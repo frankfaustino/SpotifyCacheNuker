@@ -39,15 +39,10 @@ const main = async () => {
   return output
 }
 
-const nukeCache = files => {
-  files.forEach(async file => {
-    console.log(`💥 ${file}`)
-    await fs.unlinkSync(file)
-  })
-
-  console.log('ALL DONE. KTHXBYE 👋')
-  rl.close()
-}
+const nukeCache = files => files.forEach(async file => {
+  console.log(`💥 ${file}`)
+  await fs.unlinkSync(file)
+})
 
 main()
   .then(({ files, total }) => {
@@ -62,6 +57,8 @@ main()
           console.log('\nOK. NUKING...')
           nukeCache(files)
         }
+        console.log('ALL DONE. KTHXBYE 👋')
+        rl.close()
       })
     }
   })
